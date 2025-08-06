@@ -22,24 +22,39 @@ The agent uses the following components:
     cd NLQ-Agent
     ```
 
-2.  **Create and activate a virtual environment:**
+2.  **Set up the database with Docker:**
+    ```bash
+    # Copy the example environment file
+    cp .env.example .env
+    
+    # Start the database container
+    docker-compose up -d
+    ```
+    This will start a MySQL database on port 3307 with the following credentials:
+    - **Host:** 127.0.0.1:3307
+    - **Database:** eis
+    - **Username:** eis_user
+    - **Password:** eis_pass
+
+    The database will be automatically initialized with the schema and sample data from `kimble_db_merged.sql`.
+
+    > 💡 You can access the database using Adminer at http://localhost:8080
+    > - **System:** MySQL
+    > - **Server:** mysql:3306
+    > - **Username:** eis_user
+    > - **Password:** eis_pass
+    > - **Database:** eis
+
+3.  **Create and activate a virtual environment:**
     ```bash
     python -m venv venv
     ```
     - On Windows: `.\venv\Scripts\activate`
     - On macOS/Linux: `source venv/bin/activate`
 
-3.  **Install dependencies:**
+4.  **Install dependencies:**
     ```bash
     pip install -r requirements.txt
-    ```
-4.  **Configure your credentials:**
-    Create a `.env` file by copying the template below (`.env.example`) and fill it with your Google API key and database credentials.
-    ```bash
-    #
-    # Create a file named .env and paste the content of .env.example into it
-    # Then fill in your secret values
-    #
     ```
 
 5.  **Run the agent:**
