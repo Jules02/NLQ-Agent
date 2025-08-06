@@ -1,0 +1,24 @@
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_eis
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: eis
+      MYSQL_USER: eis_user
+      MYSQL_PASSWORD: eis_pass
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./kimble_db_merged.sql:/docker-entrypoint-initdb.d/kimble_db_merged.sql
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
+
+volumes:
+  mysql_data:
