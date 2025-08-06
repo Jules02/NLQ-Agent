@@ -1,0 +1,5 @@
+langchain
+langchain-google-genai
+python-dotenv
+SQLAlchemy
+PyMySQL  # MySQL driver for SQLAlchemy
