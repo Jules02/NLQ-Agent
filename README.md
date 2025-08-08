@@ -9,6 +9,7 @@ The agent uses the following components:
 - **Google Gemini:** As the Large Language Model (LLM) for reasoning and SQL generation.
 - **SQLAlchemy :** As the toolkit to connect to and query the MySQL database.
 - **Python-dotenv:** To manage environment variables securely.
+- **OpenWeatherMap API:** For weather data used by planning tools.
 
 ---
 
@@ -26,6 +27,10 @@ The agent uses the following components:
     ```bash
     # Copy the example environment file
     cp .env.example .env
+    
+    # Edit .env to add your keys
+    # - GOOGLE_API_KEY for Gemini
+    # - OPENWEATHER_API_KEY for weather tools
     
     # Start the database container
     docker-compose up -d
@@ -73,3 +78,12 @@ Once the agent is running, you can ask it questions like:
 - `Who is the manager of the employee named 'Alice Brown'?`
 - `What is the total number of hours logged across all projects for July 2025?`
 - `Who hasn't submitted their timesheet for yesterday?`
+
+### Weather planning examples
+- `What is the current temperature in Paris,FR?`
+- `Plan weather-based leaves in Paris,FR between 2025-08-08 and 2025-08-12 when it exceeds 34°C.`
+- `For next week in Paris,FR, create pending leave requests on days above 35°C.`
+
+Notes:
+- Forecast data is limited to ~5 days (3-hourly forecast aggregated to daily max). For longer ranges, only overlapping days are considered.
+- To auto-create leaves, you must provide a user ID at launch and the tool will insert one-day pending leave requests of type 'Weather'.

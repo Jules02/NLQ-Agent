@@ -7,3 +7,4 @@ SQLAlchemy
 PyMySQL  # MySQL driver for SQLAlchemy
 python-dateutil>=2.8.2  # For date handling
 pydantic>=2.0.0  # For data validation
+requests>=2.31.0  # For making HTTP requests to weather API
